@@ -1,0 +1,37 @@
+name: Run Bot Script
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run script
+        env:
+<<<<<<< HEAD
+          BOT_SECRET: ${{ AAGBjUfgTH9d0dCXdfBZSwvr0I5FPoNBW28 }}
+          CHAT_ID: ${{ 6951496380 }}
+        run: python bot4.py
+=======
+          BOT_SECRET: ${{ secrets.BOT_SECRET }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python bot4.py
+>>>>>>> 4d4b6da153c4991ed647203ff4718a61455146d5
